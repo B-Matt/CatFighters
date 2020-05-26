@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+    www:
+        build: .
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/html/
+        links:
+            - db
+        networks:
+            - default
+    db:
+        image: mysql:5.6
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: ferit
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: test
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - db
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: test
+volumes:
+    dbdata:
