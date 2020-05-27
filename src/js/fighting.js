@@ -1,92 +1,4 @@
 /**
- * Model class that holds cat fighter information in JSON format.
- */
-class CatFighter {
-
-    constructor ( side, element, src ) {
-
-        this.side = side;
-        this.element = element;
-        this.image = src;
-        this.disabled = false;
-
-        this._parseFighterInfo( element.getAttribute( "data-info" ) );
-    }
-
-    enableFighter () {
-
-        this.disabled = false;
-    }
-
-    disableFighter () {
-
-        this.disabled = true;
-    }
-
-    _parseFighterInfo ( info ) {
-
-        info = JSON.parse( info );
-        this.name = info.name;
-        this.age = info.age;
-        this.skills = info.catInfo;
-        this.wins = info.record.wins;
-        this.loss = info.record.loss;
-    }
-}
-
-/**
- * Handles fighter user interface stuff.
- */
-class FighterUI {
-
-    constructor ( root ) {
-
-        this.rootNode = root;
-        this.oldDisabled = undefined;
-
-        this.mainAvatar = this.rootNode.getElementsByClassName("featured-cat-fighter-image")[0];
-    }
-
-    showFighterInfo () {
-
-        const catInfoNode = this.rootNode.getElementsByClassName("cat-info")[0];
-        
-        this.rootNode.getElementsByClassName("featured-cat-fighter-image")[0].src = this.fighter !== null ? this.fighter.image : "https://via.placeholder.com/300";
-        catInfoNode.getElementsByClassName("name")[0].innerHTML = this.fighter !== null ? this.fighter.name : "Cat Name";
-        catInfoNode.getElementsByClassName("age")[0].innerHTML = this.fighter !== null ? this.fighter.age : "Cat age";
-        catInfoNode.getElementsByClassName("skills")[0].innerHTML = this.fighter !== null ? this.fighter.skills : "Cat Info";
-        catInfoNode.getElementsByClassName("record")[0].innerHTML = this.fighter !== null ? ( "WINS: " + this.fighter.wins + " LOSS: " + this.fighter.loss ) : "Wins: Loss:";
-    }
-
-    showFighterBorder ( fighter ) {
-
-        if( this.fighter !== undefined && this.fighter !== null ) {
-
-            this.fighter.element.childNodes[0].nextSibling.style.border = "none";
-        }
-        
-        if( fighter != null ) {
-            
-            fighter.element.childNodes[0].nextSibling.style.border = "thick solid gray";
-        }
-        this.fighter = fighter;
-    }
-
-    fadeEnemyFighter( fighter ) {
-
-        if( this.oldDisabled !== undefined ) {
-
-            this.oldDisabled.element.childNodes[0].nextSibling.style.border = "none";
-            this.oldDisabled.enableFighter();
-        }
-
-        fighter.element.childNodes[0].nextSibling.style.border = "thick solid red";
-        fighter.disableFighter();
-        this.oldDisabled = fighter;
-    }
-}
-
-/**
  * Handles game stuff like countdown, battle, selecting fighters etc.
  */
 class CatFighting {
@@ -140,8 +52,6 @@ class CatFighting {
     selectFighter ( fighter ) {
 
         if( fighter.disabled ) {
-
-            console.log( fighter );
             return;
         }
 
@@ -299,20 +209,3 @@ class CatFighting {
         return Math.random() * ( max - min ) + min;
     }
 }
-
-// MAIN
-let fighters = [];
-const fighterBoxes = Array.from( document.getElementsByClassName("fighter-box") );
-
-fighterBoxes.forEach(v => {
-    
-    const fighterSide = ( v.closest("#firstSide") !== null ? 0 : 1 );
-    fighters.push( new CatFighter( fighterSide, v, v.childNodes[0].nextSibling.src ) );
-});
-
-const fight = new CatFighting( fighters );
-
-fighterBoxes.forEach(v => v.addEventListener('click', function() {
-
-    fight.selectFighter( fighters.find(x => x.element === v) );
-}));
