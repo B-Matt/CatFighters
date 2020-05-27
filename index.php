@@ -4,7 +4,7 @@ require_once(__DIR__ . "\src\php\database\database.php");
 
 $db = new Database();
 $fighters_img = $db->select("SELECT image_uri FROM cf_fighters WHERE 1");
-$fighters = $db->select("SELECT f.name, f.age, f.skills, s.wins, s.loss FROM cf_fighters AS f LEFT JOIN cf_fighter_stats AS s ON f.id = s.fighter_id;");
+$fighters = $db->select("SELECT f.id, f.name, f.age, f.skills, s.wins, s.loss FROM cf_fighters AS f LEFT JOIN cf_fighter_stats AS s ON f.id = s.fighter_id;");
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +50,10 @@ $fighters = $db->select("SELECT f.name, f.age, f.skills, s.wins, s.loss FROM cf_
                         <div class="col-md-4 mb-1">
                             <div class="fighter-box" data-info='<?php echo json_encode($fighter) ?>'>
                                 <img src=<?php echo $fighters_img[$i - 1]["image_uri"] ?> alt="Figter Box "
-                                    <?php echo $i ?> width="150" height="150">
+                                    <?php echo $i ?> width="150" height="150" />
+                                <a href="fighter.php?id=<?php echo $fighter['id'] ?>" class="mx-auto">
+                                    <button type="submit" class="btn btn-secondary">Edit fighter</button>
+                                </a>
                             </div>
                         </div>
                         <?php $i++ ?>
@@ -86,7 +89,10 @@ $fighters = $db->select("SELECT f.name, f.age, f.skills, s.wins, s.loss FROM cf_
                         <div class="col-md-4 mb-1">
                             <div class="fighter-box" data-info='<?php echo json_encode($fighter) ?>'>
                                 <img src=<?php echo $fighters_img[$i - 1]["image_uri"] ?> alt="Figter Box "
-                                    <?php echo $i ?> width="150" height="150">
+                                    <?php echo $i ?> width="150" height="150" />
+                                <a href="fighter.php?id=<?php echo $fighter['id'] ?>" class="mx-auto">
+                                    <button type="submit" class="btn btn-secondary">Edit fighter</button>
+                                </a>
                             </div>
                         </div>
                         <?php $i++ ?>

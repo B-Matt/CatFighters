@@ -57,7 +57,7 @@ if(isset($_GET["id"]))
                         </div>
                         <div class="form-group">
                             <label for="inputImage">Cat Image</label>
-                            <input type="file" class="form-control-file" id="inputImage" name="fighter-image" accept="image/jpeg, image/png" required />
+                            <input type="file" class="form-control-file" id="inputImage" name="fighter-image" accept="image/jpeg, image/png" <?php echo isset($_GET["id"]) ? "" : "required" ?> />
                             <input type="hidden" name="fighter-uri" value='<?php echo isset($fighter[0]) ? $fighter[0]["image_uri"] : "" ?>' />
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

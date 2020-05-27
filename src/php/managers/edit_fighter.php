@@ -13,7 +13,7 @@ if( !isset($_POST['fighter-name']) || !isset($_POST['fighter-age']) ||
 
 $edit = new FighterEdit();
 $image_uri = $edit->upload_image($_FILES['fighter-image'], $_POST['fighter-id'],  $_POST['fighter-uri']);
-$edit->update_database($image_uri, $_POST['fighter-name'], $_POST['fighter-age'], $_POST['fighter-skills'], $_POST['fighter-wins'], $_POST['fighter-loss'], $_POST['fighter-id']);
+$edit->db_update($image_uri, $_POST['fighter-name'], $_POST['fighter-age'], $_POST['fighter-skills'], $_POST['fighter-wins'], $_POST['fighter-loss'], $_POST['fighter-id']);
 
 header("Location: ../../../index.php");
 die();
