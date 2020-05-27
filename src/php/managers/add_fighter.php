@@ -1,5 +1,5 @@
 <?php
-require_once("../utils/fighter_edit.php");
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/catfighters/src/php/utils/fighter_edit.php');
 
 if( !isset($_POST['fighter-name']) || !isset($_POST['fighter-age']) ||
     !isset($_POST['fighter-skills']) || !isset($_POST['fighter-wins']) || 

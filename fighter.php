@@ -1,6 +1,6 @@
 <?php 
-require_once(__DIR__ . "\src\php\config\config.php");
-require_once(__DIR__ . "\src\php\database\database.php");
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/catfighters/src/php/config/config.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/catfighters/src/php/database/database.php');
 
 if(isset($_GET["id"])) 
 {

@@ -1,7 +1,7 @@
 <?php
 
-require_once("..\config\config.php");
-require_once("..\database\database.php");
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/catfighters/src/php/config/config.php');
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . '/catfighters/src/php/database/database.php');
 
 class FighterEdit 
 {
@@ -76,5 +76,15 @@ class FighterEdit
     
         imagepng(imagecreatefromstring(file_get_contents($file["tmp_name"])), $file_location);
         return $db_location;
+    }
+
+    public function remove_image($id)
+    {
+        $file_location = "../../../img/cat" . $id . ".png";
+        
+        if(file_exists($file_location))
+        {
+            unlink($file_location);
+        }
     }
 }
