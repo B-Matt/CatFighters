@@ -26,10 +26,11 @@ class CatFighter {
     _parseFighterInfo ( info ) {
 
         info = JSON.parse( info );
+        this.id = info.id;
         this.name = info.name;
         this.age = info.age;
         this.skills = info.skills;
-        this.wins = info.wins;
-        this.loss = info.loss;
+        this.wins = Number(info.wins);
+        this.loss = Number(info.loss);
     }
 }

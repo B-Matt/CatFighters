@@ -25,6 +25,15 @@ class FighterEdit
         ]);
     }
 
+    public function db_update_score($id, $wins, $loss)
+    {
+        $this->db->update("UPDATE cf_fighter_stats SET wins = :wins, loss = :loss WHERE fighter_id = :id", [
+            'wins' => $wins,
+            'loss' => $loss,
+            'id' => $id
+        ]);
+    }
+
     public function db_insert($image_uri, $name, $age, $skills, $wins, $loss)
     {
         $fighter_id = $this->db->insert("INSERT INTO `cf_fighters` (`image_uri`, `name`, `age`, `skills`) VALUES (:image, :name, :age, :skills)", [
