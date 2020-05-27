@@ -15,6 +15,9 @@ class CatFighting {
         this.fightButton = document.getElementById("generateFight");
         this.fightButton.setAttribute("disabled", "");
 
+        this.newFighter = document.getElementById("new-fighter");
+        this.editButtons = document.getElementsByClassName("fighter-edit");
+
         this.randomButton = document.getElementById("randomFight");
         var scope = this;
         this.randomButton.addEventListener("click", () => {
@@ -61,6 +64,7 @@ class CatFighting {
 
         if (this.fighterUi[0].fighter !== undefined && this.fighterUi[1].fighter !== undefined) {
             this.fightButton.removeAttribute("disabled", "");
+            this.newFighter.removeAttribute("disabled", "");
         }
     }
 
@@ -153,6 +157,11 @@ class CatFighting {
 
         this.fightButton.setAttribute("disabled", "");
         this.randomButton.setAttribute("disabled", "");
+        this.newFighter.setAttribute("disabled", "");
+
+        for (let button of this.editButtons) {
+            button.setAttribute("disabled", "");
+        }
 
         this.fighters.forEach((fighter) => {
 
@@ -162,7 +171,13 @@ class CatFighting {
 
     _enableSelectors() {
 
+        this.fightButton.removeAttribute("disabled");
+        this.newFighter.removeAttribute("disabled");
         this.randomButton.removeAttribute("disabled");
+
+        for (let button of this.editButtons) {
+            button.removeAttribute("disabled");
+        }
 
         this.fighters.forEach((fighter) => {
 

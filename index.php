@@ -52,7 +52,7 @@ $fighters = $db->select("SELECT f.id, f.name, f.age, f.skills, s.wins, s.loss FR
                                 <img src=<?php echo $fighters_img[$i - 1]["image_uri"] ?> alt="Figter Box "
                                     <?php echo $i ?> width="150" height="150" />
                                 <a href="fighter.php?id=<?php echo $fighter['id'] ?>" class="mx-auto">
-                                    <button type="submit" class="btn btn-secondary">Edit fighter</button>
+                                    <button type="submit" class="btn btn-secondary fighter-edit">Edit fighter</button>
                                 </a>
                             </div>
                         </div>
@@ -91,7 +91,7 @@ $fighters = $db->select("SELECT f.id, f.name, f.age, f.skills, s.wins, s.loss FR
                                 <img src=<?php echo $fighters_img[$i - 1]["image_uri"] ?> alt="Figter Box "
                                     <?php echo $i ?> width="150" height="150" />
                                 <a href="fighter.php?id=<?php echo $fighter['id'] ?>" class="mx-auto">
-                                    <button type="submit" class="btn btn-secondary">Edit fighter</button>
+                                    <button type="submit" class="btn btn-secondary fighter-edit">Edit fighter</button>
                                 </a>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ $fighters = $db->select("SELECT f.id, f.name, f.age, f.skills, s.wins, s.loss FR
             </div>
         </div>
         <a href="fighter.php" class="mx-auto">
-            <button type="submit" class="btn btn-primary">Add new fighter</button>
+            <button type="submit" id="new-fighter" class="btn btn-primary">Add new fighter</button>
         </a>
     </div>
 
