@@ -18,12 +18,43 @@ class Database
         }
     }
 
+    public function __destruct()
+    {
+        $this->connection = null;
+    }
+
     public function select($query, $params = []) 
     {
         try 
         {
             $stmt = $this->executeStmt($query, $params);
             return $stmt->fetchAll();
+        }
+        catch(Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function insert($query, $params = [])
+    {
+        try
+        {
+            
+            $this->executeStmt($query, $params);
+            return $this->connection->lastInsertId();
+            
+        }catch(Exception $e)
+        {
+            throw new Exception($e->getMessage());   
+        }		
+    }
+
+    public function update($query, $params)
+    {
+        try 
+        {
+            $stmt = $this->executeStmt($query, $params);
         }
         catch(Exception $e)
         {
