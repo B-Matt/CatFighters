@@ -14,7 +14,5 @@ $fighter_id = $edit->db_insert("", $_POST['fighter-name'], $_POST['fighter-age']
 $image_uri = $edit->upload_image($_FILES['fighter-image'], $fighter_id,  $_POST['fighter-uri']);
 $edit->db_update($image_uri, $_POST['fighter-name'], $_POST['fighter-age'], $_POST['fighter-skills'], $_POST['fighter-wins'], $_POST['fighter-loss'], $fighter_id);
 
-var_dump($image_uri);
-var_dump($fighter_id);
-//header("Location: ../../../index.php");
+header("Location: ../../../index.php");
 die();

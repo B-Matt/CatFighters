@@ -34,6 +34,13 @@ class FighterEdit
         ]);
     }
 
+    public function db_delete($id)
+    {
+        $this->db->update("DELETE FROM `cf_fighters` WHERE `id` = :id", [
+            'id' => $id
+        ]);
+    }
+
     public function db_insert($image_uri, $name, $age, $skills, $wins, $loss)
     {
         $fighter_id = $this->db->insert("INSERT INTO `cf_fighters` (`image_uri`, `name`, `age`, `skills`) VALUES (:image, :name, :age, :skills)", [
